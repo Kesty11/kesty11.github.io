@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/IMG_2182.PNG">
+
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body>
+
+    <header class="text-gray-400 bg-white body-font shadow-lg ">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+
+                <img src="/cars/IMG_2182.PNG" width="50px">
+                <span class="ml-3 text-xl text-gray-900">Carzilla</span>
+            </a>
+            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+                <a class="mr-5 hover:text-white">New Cars</a>
+                <a class="mr-5 hover:text-white">Articles</a>
+                <a class="mr-5 hover:text-white">Review</a>
+                <a class="mr-5 hover:text-white">Deals</a>
+            </nav>
+            <button
+                class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">Login
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+    <!-- component -->
+    <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+
+    <article x-data="slider" class="relative w-full flex flex-shrink-0 overflow-hidden shadow-2xl">
+        <div class="rounded-full bg-gray-600 text-white absolute top-5 right-5 text-sm px-2 text-center z-10">
+            <span x-text="currentIndex"></span>/
+            <span x-text="images.length"></span>
+        </div>
+
+        <template x-for="(image, index) in images">
+            <figure class="h-96" x-show="currentIndex == index + 1"
+                x-transition:enter="transition transform duration-300" x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100" x-transition:leave="transition transform duration-300"
+                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+                <img src="/ads/ALD Ugo Subscribe Horizontal banner_Low res.jpg" alt="Image"
+                    class="absolute inset-0 z-10  w-full object-cover opacity-100">
+
+
+            </figure>
+        </template>
+
+        <button @click="back()"
+            class="absolute left-14 top-1/2 -translate-y-1/2 w-11 h-11 flex justify-center items-center rounded-full shadow-md z-10 bg-gray-100 hover:bg-gray-200">
+            <svg class=" w-8 h-8 font-bold transition duration-500 ease-in-out transform motion-reduce:transform-none text-gray-500 hover:text-gray-600 hover:-translate-x-0.5"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7">
+                </path>
+            </svg>
+        </button>
+
+        <button @click="next()"
+            class="absolute right-14 top-1/2 translate-y-1/2 w-11 h-11 flex justify-center items-center rounded-full shadow-md z-10 bg-gray-100 hover:bg-gray-200">
+            <svg class=" w-8 h-8 font-bold transition duration-500 ease-in-out transform motion-reduce:transform-none text-gray-500 hover:text-gray-600 hover:translate-x-0.5"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </button>
+    </article>
+    <div class="bg-white">
+        <div>
+            <div class="relative z-40 lg:hidden" role="dialog" aria-modal="true">
+                <div class="fixed inset-0 bg-black bg-opacity-25"></div>
+                <div class="fixed inset-0 z-40 flex">
+                    <div
+                        class="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
+                        <div class="flex items-center justify-between px-4">
+                            <h2 class="text-lg font-medium text-gray-900">Filters</h2>
+                            <button type="button"
+                                class="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400">
+                                <span class="sr-only">Close menu</span>
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- Filters -->
+                        <form class="mt-4 border-t border-gray-200">
+                            <h3 class="sr-only">Categories</h3>
+                            <ul role="list" class="px-2 py-3 font-medium text-gray-900">
+                                <li>
+                                    <a href="#" class="block px-2 py-3">Totes</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-2 py-3">Backpacks</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-2 py-3">Travel Bags</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-2 py-3">Hip Bags</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-2 py-3">Laptop Sleeves</a>
+                                </li>
+                            </ul>
+
+                            <div class="border-t border-gray-200 px-4 py-6">
+                                <h3 class="-mx-2 -my-3 flow-root">
+                                    <!-- Expand/collapse section button -->
+                                    <button type="button"
+                                        class="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500"
+                                        aria-controls="filter-section-mobile-0" aria-expanded="false">
+                                        <span class="font-medium text-gray-900">Color</span>
+                                        <span class="ml-6 flex items-center">
+                                            <!-- Expand icon, show/hide based on section open state. -->
+                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                aria-hidden="true">
+                                                <path
+                                                    d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                                            </svg>
+                                            <!-- Collapse icon, show/hide based on section open state. -->
+                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                aria-hidden="true">
+                                                <path fill-rule="evenodd"
+                                                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </h3>
+                                <!-- Filter section, show/hide based on section state. -->
+                                <div class="pt-6" id="filter-section-mobile-0">
+                                    <div class="space-y-6">
+                                        <div class="flex items-center">
+                                            <input id="filter-mobile-color-0" name="color[]" value="white"
+                                                type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-mobile-color-0"
+                                                class="ml-3 min-w-0 flex-1 text-gray-500">White</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-mobile-color-1" name="color[]" value="beige"
+                                                type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-mobile-color-1"
+                                                class="ml-3 min-w-0 flex-1 text-gray-500">Beige</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-mobile-color-2" name="color[]" value="blue"
+                                                type="checkbox" checked
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-mobile-color-2"
+                                                class="ml-3 min-w-0 flex-1 text-gray-500">Blue</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-mobile-color-3" name="color[]" value="brown"
+                                                type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-mobile-color-3"
+                                                class="ml-3 min-w-0 flex-1 text-gray-500">Brown</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-mobile-color-4" name="color[]" value="green"
+                                                type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-mobile-color-4"
+                                                class="ml-3 min-w-0 flex-1 text-gray-500">Green</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-mobile-color-5" name="color[]" value="purple"
+                                                type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-mobile-color-5"
+                                                class="ml-3 min-w-0 flex-1 text-gray-500">Purple</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-t border-gray-200 px-4 py-6">
+                                <h3 class="-mx-2 -my-3 flow-root">
+                                    <!-- Expand/collapse section button -->
+                                    <button type="button"
+                                        class="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500"
+                                        aria-controls="filter-section-mobile-1" aria-expanded="false">
+                                        <span class="font-medium text-gray-900">Category</span>
+                                        <span class="ml-6 flex items-center">
+                                            <!-- Expand icon, show/hide based on section open state. -->
+                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                aria-hidden="true">
+                                                <path
+                                                    d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                                            </svg>
+                                            <!-- Collapse icon, show/hide based on section open state. -->
+                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                aria-hidden="true">
+                                                <path fill-rule="evenodd"
+                                                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </h3>
+                                <!-- Filter section, show/hide based on section state. -->
+                                <div class="pt-6" id="filter-section-mobile-1">
+                                    <div class="space-y-6">
+                                        <div class="flex items-center">
+                                            <input id="filter-mobile-category-0" name="category[]" value="new-arrivals"
+                                                type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-mobile-category-0"
+                                                class="ml-3 min-w-0 flex-1 text-gray-500">Petrol</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-mobile-category-1" name="category[]" value="sale"
+                                                type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-mobile-category-1"
+                                                class="ml-3 min-w-0 flex-1 text-gray-500">Diesel</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-t border-gray-200 px-4 py-6">
+                                <h3 class="-mx-2 -my-3 flow-root">
+                                    <!-- Expand/collapse section button -->
+                                    <button type="button"
+                                        class="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500"
+                                        aria-controls="filter-section-mobile-2" aria-expanded="false">
+                                        <span class="font-medium text-gray-900">Type</span>
+                                        <span class="ml-6 flex items-center">
+                                            <!-- Expand icon, show/hide based on section open state. -->
+                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                aria-hidden="true">
+                                                <path
+                                                    d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                                            </svg>
+                                            <!-- Collapse icon, show/hide based on section open state. -->
+                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                aria-hidden="true">
+                                                <path fill-rule="evenodd"
+                                                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </h3>
+                                <!-- Filter section, show/hide based on section state. -->
+                                <div class="pt-6" id="filter-section-mobile-2">
+                                    <div class="space-y-6">
+                                        <div class="flex items-center">
+                                            <input id="filter-mobile-size-0" name="size[]" value="2l" type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-mobile-size-0"
+                                                class="ml-3 min-w-0 flex-1 text-gray-500">SUV</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-mobile-size-1" name="size[]" value="6l" type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-mobile-size-1"
+                                                class="ml-3 min-w-0 flex-1 text-gray-500">HatchBack</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-mobile-size-2" name="size[]" value="12l" type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-mobile-size-2"
+                                                class="ml-3 min-w-0 flex-1 text-gray-500">Sedan</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+                    <h1 class="text-4xl font-bold tracking-tight text-gray-900">New Arrivals</h1>
+
+                    <div class="flex items-center">
+                        <div class="relative inline-block text-left">
+                            <div>
+                                <button type="button"
+                                    class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
+                                    id="menu-button" aria-expanded="false" aria-haspopup="true">
+                                    Sort
+                                    <svg class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                                <div class="py-1" role="none" hidden>
+                                    <a href="#" class="font-medium text-gray-900 block px-4 py-2 text-sm"
+                                        role="menuitem" tabindex="-1" id="menu-item-0">Most Popular</a>
+                                    <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem"
+                                        tabindex="-1" id="menu-item-1">Best Rating</a>
+                                    <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem"
+                                        tabindex="-1" id="menu-item-2">Newest</a>
+                                    <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem"
+                                        tabindex="-1" id="menu-item-3">Price: Low to High</a>
+                                    <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem"
+                                        tabindex="-1" id="menu-item-4">Price: High to Low</a>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7">
+                            <span class="sr-only">View grid</span>
+                            <svg class="h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M4.25 2A2.25 2.25 0 002 4.25v2.5A2.25 2.25 0 004.25 9h2.5A2.25 2.25 0 009 6.75v-2.5A2.25 2.25 0 006.75 2h-2.5zm0 9A2.25 2.25 0 002 13.25v2.5A2.25 2.25 0 004.25 18h2.5A2.25 2.25 0 009 15.75v-2.5A2.25 2.25 0 006.75 11h-2.5zm9-9A2.25 2.25 0 0011 4.25v2.5A2.25 2.25 0 0013.25 9h2.5A2.25 2.25 0 0018 6.75v-2.5A2.25 2.25 0 0015.75 2h-2.5zm0 9A2.25 2.25 0 0011 13.25v2.5A2.25 2.25 0 0013.25 18h2.5A2.25 2.25 0 0018 15.75v-2.5A2.25 2.25 0 0015.75 11h-2.5z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <button type="button" class="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden">
+                            <span class="sr-only">Filters</span>
+                            <svg class="h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 01.628.74v2.288a2.25 2.25 0 01-.659 1.59l-4.682 4.683a2.25 2.25 0 00-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 018 18.25v-5.757a2.25 2.25 0 00-.659-1.591L2.659 6.22A2.25 2.25 0 012 4.629V2.34a.75.75 0 01.628-.74z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <section aria-labelledby="products-heading" class="pb-24 pt-6">
+                    <h2 id="products-heading" class="sr-only">Products</h2>
+
+                    <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+                        <!-- Filters -->
+                        <form class="hidden lg:block">
+                            <h3 class="sr-only">Categories</h3>
+                            <ul role="list"
+                                class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
+                                <li>
+                                    <a href="#">Totes</a>
+                                </li>
+                                <li>
+                                    <a href="#">Backpacks</a>
+                                </li>
+                                <li>
+                                    <a href="#">Travel Bags</a>
+                                </li>
+                                <li>
+                                    <a href="#">Hip Bags</a>
+                                </li>
+                                <li>
+                                    <a href="#">Laptop Sleeves</a>
+                                </li>
+                            </ul>
+
+                            <div class="border-b border-gray-200 py-6">
+                                <h3 class="-my-3 flow-root">
+                                    <!-- Expand/collapse section button -->
+                                    <button type="button"
+                                        class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500"
+                                        aria-controls="filter-section-0" aria-expanded="false">
+                                        <span class="font-medium text-gray-900">Color</span>
+                                        <span class="ml-6 flex items-center">
+                                            <!-- Expand icon, show/hide based on section open state. -->
+                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                aria-hidden="true">
+                                                <path
+                                                    d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                                            </svg>
+                                            <!-- Collapse icon, show/hide based on section open state. -->
+                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                aria-hidden="true">
+                                                <path fill-rule="evenodd"
+                                                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </h3>
+                                <!-- Filter section, show/hide based on section state. -->
+                                <div class="pt-6" id="filter-section-0">
+                                    <div class="space-y-4">
+                                        <div class="flex items-center">
+                                            <input id="filter-color-0" name="color[]" value="white" type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-color-0" class="ml-3 text-sm text-gray-600">White</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-color-1" name="color[]" value="beige" type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-color-1" class="ml-3 text-sm text-gray-600">Beige</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-color-2" name="color[]" value="blue" type="checkbox"
+                                                checked
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-color-2" class="ml-3 text-sm text-gray-600">Blue</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-color-3" name="color[]" value="brown" type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-color-3" class="ml-3 text-sm text-gray-600">Brown</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-color-4" name="color[]" value="green" type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-color-4" class="ml-3 text-sm text-gray-600">Green</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-color-5" name="color[]" value="purple" type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-color-5"
+                                                class="ml-3 text-sm text-gray-600">Purple</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-b border-gray-200 py-6">
+                                <h3 class="-my-3 flow-root">
+                                    <!-- Expand/collapse section button -->
+                                    <button type="button"
+                                        class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500"
+                                        aria-controls="filter-section-1" aria-expanded="false">
+                                        <span class="font-medium text-gray-900">Category</span>
+                                        <span class="ml-6 flex items-center">
+                                            <!-- Expand icon, show/hide based on section open state. -->
+                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                aria-hidden="true">
+                                                <path
+                                                    d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                                            </svg>
+                                            <!-- Collapse icon, show/hide based on section open state. -->
+                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                aria-hidden="true">
+                                                <path fill-rule="evenodd"
+                                                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </h3>
+                                <!-- Filter section, show/hide based on section state. -->
+                                <div class="pt-6" id="filter-section-1">
+                                    <div class="space-y-4">
+                                        <div class="flex items-center">
+                                            <input id="filter-category-0" name="category[]" value="new-arrivals"
+                                                type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-category-0"
+                                                class="ml-3 text-sm text-gray-600">Petrol</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-category-1" name="category[]" value="sale" type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-category-1"
+                                                class="ml-3 text-sm text-gray-600">Diesel</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-b border-gray-200 py-6">
+                                <h3 class="-my-3 flow-root">
+                                    <!-- Expand/collapse section button -->
+                                    <button type="button"
+                                        class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500"
+                                        aria-controls="filter-section-2" aria-expanded="false">
+                                        <span class="font-medium text-gray-900">Type</span>
+                                        <span class="ml-6 flex items-center">
+                                            <!-- Expand icon, show/hide based on section open state. -->
+                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                aria-hidden="true">
+                                                <path
+                                                    d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                                            </svg>
+                                            <!-- Collapse icon, show/hide based on section open state. -->
+                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                aria-hidden="true">
+                                                <path fill-rule="evenodd"
+                                                    d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </h3>
+                                <!-- Filter section, show/hide based on section state. -->
+                                <div class="pt-6" id="filter-section-2">
+                                    <div class="space-y-4">
+                                        <div class="flex items-center">
+                                            <input id="filter-size-0" name="size[]" value="2l" type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-size-0" class="ml-3 text-sm text-gray-600">SUV</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-size-1" name="size[]" value="6l" type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-size-1"
+                                                class="ml-3 text-sm text-gray-600">HatchBack</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="filter-size-2" name="size[]" value="12l" type="checkbox"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-size-2" class="ml-3 text-sm text-gray-600">Sedan</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Product grid -->
+                        <div class="lg:col-span-3">
+                            <script>
+                                document.addEventListener('alpine:init', () => {
+                                    Alpine.data('slider', () => ({
+                                        currentIndex: 1,
+                                        images: [
+                                            'https://source.unsplash.com/1600x900/?beach',
+                                            'https://source.unsplash.com/1600x900/?cat',
+                                            'https://source.unsplash.com/1600x900/?dog',
+                                            'https://source.unsplash.com/1600x900/?lego',
+                                            'https://source.unsplash.com/1600x900/?textures&patterns'
+                                        ],
+                                        back() {
+                                            if (this.currentIndex > 1) {
+                                                this.currentIndex = this.currentIndex - 1;
+                                            }
+                                        },
+                                        next() {
+                                            if (this.currentIndex < this.images.length) {
+                                                this.currentIndex = this.currentIndex + 1;
+                                            } else if (this.currentIndex <= this.images.length) {
+                                                this.currentIndex = this.images.length - this.currentIndex + 1
+                                            }
+                                        },
+                                    }))
+                                })
+                            </script>
+                            <script>
+                                var app = angular.module("myApp", []);
+                                app.controller("myCtrl", function ($scope) {
+                                    $scope.records = [
+                                        {
+                                            "id": 1,
+                                            "Company_Name": "Honda",
+                                            "Car_Name": "Honda City",
+                                            "Price": "14.35L-19.3L",
+                                            "Imagelink": "/cars/1.jpeg",
+                                            "Colour": "White",
+                                            "Category": "Petrol",
+                                            "Type": "SUV"
+                                        },
+                                        {
+                                            "id": 2,
+                                            "Company_Name": "Maruti Suzuki",
+                                            "Car_Name": "Swift Dzire",
+                                            "Price": "9.77L",
+                                            "Imagelink": "/cars/2.jpeg",
+                                            "Colour": "Blue",
+                                            "Category": "Petrol",
+                                            "Type": "Hatchback"
+                                        },
+                                        {
+                                            "id": 3,
+                                            "Company_Name": "Hyundai",
+                                            "Car_Name": "Creta",
+                                            "Price": "13.71L",
+                                            "Imagelink": "/cars/3.png",
+                                            "Colour": "Beige",
+                                            "Category": "Diesel",
+                                            "Type": "SUV"
+                                        },
+                                        {
+                                            "id": 4,
+                                            "Company_Name": "TATA",
+                                            "Car_Name": "Tiago",
+                                            "Price": "6.68L",
+                                            "Imagelink": "/cars/4.png",
+                                            "Colour": "Green",
+                                            "Category": "Petrol",
+                                            "Type": "Hatchback"
+                                        },
+                                        {
+                                            "id": 5,
+                                            "Company_Name": "Toyota",
+                                            "Car_Name": "Glanza",
+                                            "Price": "8.05L",
+                                            "Imagelink": "/cars/5.jpeg",
+                                            "Colour": "Purple",
+                                            "Category": "Petrol",
+                                            "Type": "Hatchback"
+                                        },
+                                        {
+                                            "id": 6,
+                                            "Company_Name": "Hyundai",
+                                            "Car_Name": "Venue",
+                                            "Price": "10.92L",
+                                            "Imagelink": "/cars/6.jpeg",
+                                            "Colour": "Brown",
+                                            "Category": "Petrol",
+                                            "Type": "Sedan"
+                                        },
+                                        {
+                                            "id": 7,
+                                            "Company_Name": "TATA",
+                                            "Car_Name": "Altroz",
+                                            "Price": "8.90L",
+                                            "Imagelink": "/cars/7.png",
+                                            "Colour": "Blue",
+                                            "Category": "Diesel",
+                                            "Type": "Hatchback"
+                                        },
+                                        {
+                                            "id": 8,
+                                            "Company_Name": "TATA",
+                                            "Car_Name": "Tigor",
+                                            "Price": "7.52L",
+                                            "Imagelink": "/cars/8.jpeg",
+                                            "Colour": "Green",
+                                            "Category": "Petrol",
+                                            "Type": "Sedan"
+                                        },
+                                        {
+                                            "id": 9,
+                                            "Company_Name": "Hyundai",
+                                            "Car_Name": "Invictus",
+                                            "Price": "18.40L",
+                                            "Imagelink": "/cars/9.jpeg",
+                                            "Colour": "White",
+                                            "Category": "Diesel",
+                                            "Type": "SUV"
+                                        },
+                                        {
+                                            "id": 10,
+                                            "Company_Name": "Hyundai",
+                                            "Car_Name": "Verna",
+                                            "Price": "18.40L",
+                                            "Imagelink": "/cars/10.jpeg",
+                                            "Colour": "Purple",
+                                            "Category": "Petrol",
+                                            "Type": "Sedan"
+                                        },
+                                        {
+                                            "id": 11,
+                                            "Company_Name": "Hyundai",
+                                            "Car_Name": "Vitara",
+                                            "Price": "18.40L",
+                                            "Imagelink": "/cars/11.jpeg",
+                                            "Colour": "Brown",
+                                            "Category": "Diesel",
+                                            "Type": "SUV"
+                                        },
+                                        {
+                                            "id": 12,
+                                            "Company_Name": "Hyundai",
+                                            "Car_Name": "Invictus",
+                                            "Price": "18.40L",
+                                            "Imagelink": "/cars/12.jpeg",
+                                            "Colour": "Beige",
+                                            "Category": "Diesel",
+                                            "Type": "Hatchback"
+                                        },
+                                        {
+                                            "id": 13,
+                                            "Company_Name": "Hyundai",
+                                            "Car_Name": "Invictus",
+                                            "Price": "18.40L",
+                                            "Imagelink": "/cars/13.jpeg",
+                                            "Colour": "Green",
+                                            "Category": "Petrol",
+                                            "Type": "Sedan"
+                                        },
+                                        {
+                                            "id": 14,
+                                            "Company_Name": "Hyundai",
+                                            "Car_Name": "Invictus",
+                                            "Price": "18.40L",
+                                            "Imagelink": "/cars/14.jpeg",
+                                            "Colour": "Blue",
+                                            "Category": "Diesel",
+                                            "Type": "Hatchback"
+                                        },
+                                        {
+                                            "id": 15,
+                                            "Company_Name": "Hyundai",
+                                            "Car_Name": "Invictus",
+                                            "Price": "18.40L",
+                                            "Imagelink": "/cars/15.jpeg",
+                                            "Colour": "Purple",
+                                            "Category": "Petrol",
+                                            "Type": "SUV"
+                                        },
+                                        {
+                                            "id": 16,
+                                            "Company_Name": "Honda",
+                                            "Car_Name": "Honda City",
+                                            "Price": "14.35L-19.3L",
+                                            "Imagelink": "/cars/16.png",
+                                            "Colour": "White",
+                                            "Category": "Petrol",
+                                            "Type": "Sedan"
+                                        }
+                                    ]
+                                });
+                            </script>
+                            <script>
+                                function openProductDetailsPage(productId) {
+                                    // Assuming you have a separate HTML page for product details, you can construct the URL based on the productId
+                                    const productDetailURL = "/cardetail.html?carId=" + productId;
+                                    window.open(productDetailURL, "_blank");
+                                }
+                            </script>
+                            <section class="text-gray-600 body-font">
+                                <div class="container px-5 py-24 mx-auto">
+                                    <div class="flex flex-wrap -m-4" ng-controller="myCtrl">
+                                        <div class="lg:w-1/3 md:w-1/2 p-4 rounded-xl shadow-md w-full"
+                                            ng-repeat="x in records">
+                                            <a class="block relative h-48 rounded overflow-hidden">
+                                                <img alt="ecommerce" class="object-cover object-center w-full block"
+                                                    src={{x.Imagelink}}>
+                                            </a>
+                                            <div class="mt-4">
+                                                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
+                                                    {{x.Company_Name}}</h3>
+                                                <h2 class="text-black title-font text-lg font-medium">{{x.Car_Name}}
+                                                </h2>
+                                                <p class="mt-1">{{x.Price}}</p>
+                                                <br>
+
+                                                <button type="button"
+                                                    class="text-white bg-gradient-to-r h-1 from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-full text-sm px-2.5 py-2.5 text-center mr-2 mb-2 "></button>
+                                                <button type="button"
+                                                    class="text-white bg-gradient-to-r h-1 from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-full text-sm px-2.5 py-2.5 text-center mr-2 mb-2"></button>
+                                                <button type="button"
+                                                    class="text-white bg-gradient-to-r h-1 from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-full text-sm px-2.5 py-2.5 text-center mr-2 mb-2"></button>
+                                                <button type="button"
+                                                    class="text-white bg-gradient-to-r h-1 from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-full text-sm px-2.5 py-2.5 text-center mr-2 mb-2"></button>
+                                                <button type="button"
+                                                    class="text-white bg-gradient-to-r h-1 from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-full text-sm px-2.5 py-2.5 text-center mr-2 mb-2"></button>
+                                                <br><br>
+                                                <button
+                                                    class="bg-blue-500 hover:bg-blue-700 text-white h-10 w-24 font-bold text-xs py-2 px-4 rounded-md"
+                                                    onclick="openProductDetailsPage({{x.id}})">
+                                                    See Details
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- Your content -->
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-wrap -m-4">
+                <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
+                    <div class="h-full text-center">
+                        <img alt="testimonial"
+                            class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
+                            src="/people/1.jpg">
+                        <p class="leading-relaxed">Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki
+                            taxidermy
+                            90's cronut +1 kinfolk. Single-origin coffee ennui shaman taiyaki vape DIY tote bag drinking
+                            vinegar
+                            cronut adaptogen squid fanny pack vaporware.</p>
+                        <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
+                        <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">HOLDEN CAULFIELD</h2>
+                        <p class="text-gray-500">Senior Product Designer</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
+                    <div class="h-full text-center">
+                        <img alt="testimonial"
+                            class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
+                            src="/people/2.jpg">
+                        <p class="leading-relaxed">Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki
+                            taxidermy
+                            90's cronut +1 kinfolk. Single-origin coffee ennui shaman taiyaki vape DIY tote bag drinking
+                            vinegar
+                            cronut adaptogen squid fanny pack vaporware.</p>
+                        <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
+                        <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">ALPER KAMU</h2>
+                        <p class="text-gray-500">UI Develeoper</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/3 lg:mb-0 p-4">
+                    <div class="h-full text-center">
+                        <img alt="testimonial"
+                            class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
+                            src="/people/3.jpg">
+                        <p class="leading-relaxed">Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki
+                            taxidermy
+                            90's cronut +1 kinfolk. Single-origin coffee ennui shaman taiyaki vape DIY tote bag drinking
+                            vinegar
+                            cronut adaptogen squid fanny pack vaporware.</p>
+                        <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
+                        <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">HENRY LETHAM</h2>
+                        <p class="text-gray-500">CTO</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="text-gray-600 body-font">
+        <div
+            class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+            <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
+                <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+                    <img src="/cars/IMG_2182.PNG" width="80px">
+                    <span class="ml-3 text-xl">Carzilla</span>
+                </a>
+                <p class="mt-2 text-sm text-gray-500">Air plant banjo lyft occupy retro adaptogen indego</p>
+            </div>
+            <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
+                <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+                    <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+                    <nav class="list-none mb-10">
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">First Link</a>
+                        </li>
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">Second Link</a>
+                        </li>
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">Third Link</a>
+                        </li>
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
+                        </li>
+                    </nav>
+                </div>
+                <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+                    <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+                    <nav class="list-none mb-10">
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">First Link</a>
+                        </li>
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">Second Link</a>
+                        </li>
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">Third Link</a>
+                        </li>
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
+                        </li>
+                    </nav>
+                </div>
+                <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+                    <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+                    <nav class="list-none mb-10">
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">First Link</a>
+                        </li>
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">Second Link</a>
+                        </li>
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">Third Link</a>
+                        </li>
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
+                        </li>
+                    </nav>
+                </div>
+                <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+                    <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+                    <nav class="list-none mb-10">
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">First Link</a>
+                        </li>
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">Second Link</a>
+                        </li>
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">Third Link</a>
+                        </li>
+                        <li>
+                            <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
+                        </li>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

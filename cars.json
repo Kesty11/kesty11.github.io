@@ -1,0 +1,162 @@
+[
+  {
+      "id": 1,
+      "Company_Name": "Honda",
+      "Car_Name": "Honda City",
+      "Price": "14.35L-19.3L",
+      "Imagelink": "/cars/1.jpeg",
+      "Colour": "White",
+      "Category": "Petrol",
+      "Type": "SUV"
+  },
+  {
+      "id": 2,
+      "Company_Name": "Maruti Suzuki",
+      "Car_Name": "Swift Dzire",
+      "Price": "9.77L",
+      "Imagelink": "/cars/2.jpeg",
+      "Colour": "Blue",
+      "Category": "Petrol",
+      "Type": "Hatchback"
+  },
+  {
+      "id": 3,
+      "Company_Name": "Hyundai",
+      "Car_Name": "Creta",
+      "Price": "13.71L",
+      "Imagelink": "/cars/3.png",
+      "Colour": "Beige",
+      "Category": "Diesel",
+      "Type": "SUV"
+  },
+  {
+      "id": 4,
+      "Company_Name": "TATA",
+      "Car_Name": "Tiago",
+      "Price": "6.68L",
+      "Imagelink": "/cars/4.png",
+      "Colour": "Green",
+      "Category": "Petrol",
+      "Type": "Hatchback"
+  },
+  {
+      "id": 5,
+      "Company_Name": "Toyota",
+      "Car_Name": "Glanza",
+      "Price": "8.05L",
+      "Imagelink": "/cars/5.jpeg",
+      "Colour": "Purple",
+      "Category": "Petrol",
+      "Type": "Hatchback"
+  },
+  {
+      "id": 6,
+      "Company_Name": "Hyundai",
+      "Car_Name": "Venue",
+      "Price": "10.92L",
+      "Imagelink": "/cars/6.jpeg",
+      "Colour": "Brown",
+      "Category": "Petrol",
+      "Type": "Sedan"
+  },
+  {
+      "id": 7,
+      "Company_Name": "TATA",
+      "Car_Name": "Altroz",
+      "Price": "8.90L",
+      "Imagelink": "/cars/7.png",
+      "Colour": "Blue",
+      "Category": "Diesel",
+      "Type": "Hatchback"
+  },
+  {
+      "id": 8,
+      "Company_Name": "TATA",
+      "Car_Name": "Tigor",
+      "Price": "7.52L",
+      "Imagelink": "/cars/8.jpeg",
+      "Colour": "Green",
+      "Category": "Petrol",
+      "Type": "Sedan"
+  },
+  {
+      "id": 9,
+      "Company_Name": "Hyundai",
+      "Car_Name": "Invictus",
+      "Price": "18.40L",
+      "Imagelink": "/cars/9.jpeg",
+      "Colour": "White",
+      "Category": "Diesel",
+      "Type": "SUV"
+  },
+  {
+      "id": 10,
+      "Company_Name": "Hyundai",
+      "Car_Name": "Verna",
+      "Price": "18.40L",
+      "Imagelink": "/cars/10.jpeg",
+      "Colour": "Purple",
+      "Category": "Petrol",
+      "Type": "Sedan"
+  },
+  {
+      "id": 11,
+      "Company_Name": "Hyundai",
+      "Car_Name": "Vitara",
+      "Price": "18.40L",
+      "Imagelink": "/cars/11.jpeg",
+      "Colour": "Brown",
+      "Category": "Diesel",
+      "Type": "SUV"
+  },
+  {
+      "id": 12,
+      "Company_Name": "Hyundai",
+      "Car_Name": "Invictus",
+      "Price": "18.40L",
+      "Imagelink": "/cars/12.jpeg",
+      "Colour": "Beige",
+      "Category": "Diesel",
+      "Type": "Hatchback"
+  },
+  {
+      "id": 13,
+      "Company_Name": "Hyundai",
+      "Car_Name": "Invictus",
+      "Price": "18.40L",
+      "Imagelink": "/cars/13.jpeg",
+      "Colour": "Green",
+      "Category": "Petrol",
+      "Type": "Sedan"
+  },
+  {
+      "id": 14,
+      "Company_Name": "Hyundai",
+      "Car_Name": "Invictus",
+      "Price": "18.40L",
+      "Imagelink": "/cars/14.jpeg",
+      "Colour": "Blue",
+      "Category": "Diesel",
+      "Type": "Hatchback"
+  },
+  {
+      "id": 15,
+      "Company_Name": "Hyundai",
+      "Car_Name": "Invictus",
+      "Price": "18.40L",
+      "Imagelink": "/cars/15.jpeg",
+      "Colour": "Purple",
+      "Category": "Petrol",
+      "Type": "SUV"
+  },
+  {
+      "id": 16,
+      "Company_Name": "Honda",
+      "Car_Name": "Honda City",
+      "Price": "14.35L-19.3L",
+      "Imagelink": "/cars/16.png",
+      "Colour": "White",
+      "Category": "Petrol",
+      "Type": "Sedan"
+  }
+]
